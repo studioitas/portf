@@ -1,0 +1,20 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+
+Привет блог
+
+<h3>Анатолий имеет всего {{ blogs.count }} постов в блоге{{ blogs.count|pluralize}}</h3>
+<div class="row  p-1 alert alert-dark">
+	{% for blog in blogs %}
+	<div class="col-md-4 alert alert-warning  ">
+		<a href="{% url 'blog:detail' blog.id %}">
+			<h4>{{ blog.title }}</h4>
+		</a>
+		<h5>{{ blog.date|date:'M d Y' }}</h5>
+		<p>{{ blog.description|safe|truncatechars:30 }}</p>
+	</div>
+
+	{% endfor %}
+</div>
+{% endblock %}
